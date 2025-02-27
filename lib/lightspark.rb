@@ -2,6 +2,8 @@
 
 require_relative "lightspark/version"
 require "net/http"
+require "json"
+require "time"
 
 module Lightspark
   class Error < StandardError; end
@@ -73,7 +75,8 @@ fragment AccountFragment on Account {
 
     def current_account
       parsed = execute(CURRENT_ACCOUNT_QUERY)
-      if parsed["errors"].blank?
+      if parsed["errors"]
+      else
         Account.new symbolize_keys(parsed["data"]["current_account"])
       end
     end
