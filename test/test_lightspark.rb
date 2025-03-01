@@ -8,6 +8,10 @@ class TestLightspark < Minitest::Test
   end
 
   def test_it_does_something_useful
-    assert false
+    client = Lightspark::GraphqlClient.new
+
+    # expected: "https://api.lightspark.com/graphql/server/2023-09-13"
+    # actual: client.uri.to_s
+    assert_equal "https://api.lightspark.com/graphql/server/2023-09-13", client.uri.to_s
   end
 end

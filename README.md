@@ -22,9 +22,14 @@ gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
 
 ## Usage
 
+Go to https://app.lightspark.com/api-config and get values for
+
+- `LIGHTSPARK_API_TOKEN_CLIENT_ID`
+- `LIGHTSPARK_API_TOKEN_CLIENT_SECRET`
+
 ```rb
 client = Lightspark::GraphqlClient.new
-client.current_user
+client.current_account
 ```
 
 ## Development
