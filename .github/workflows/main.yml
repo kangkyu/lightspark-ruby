@@ -24,4 +24,7 @@ jobs:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
       - name: Run the default task
+        env:
+          LIGHTSPARK_TEST_API_TOKEN_CLIENT_ID: ${{ secrets.LIGHTSPARK_TEST_API_TOKEN_CLIENT_ID }}
+          LIGHTSPARK_TEST_API_TOKEN_CLIENT_SECRET: ${{ secrets.LIGHTSPARK_TEST_API_TOKEN_CLIENT_SECRET }}
         run: bundle exec rake
