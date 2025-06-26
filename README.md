@@ -1,8 +1,6 @@
 # Lightspark
 
-API client for Lightspark GraphQL API.
-
-Welcome to the new gem! This is currently under development
+Welcome to the new gem! This gem is under development for using Lightspark API with Ruby.
 
 ## Installation
 
