@@ -5,6 +5,8 @@ require "net/http"
 require "json"
 require "time"
 
+require_relative "lightspark/config"
+
 module Lightspark
   class Error < StandardError; end
 
@@ -84,11 +86,11 @@ fragment AccountFragment on Account {
     private
 
     def api_client_id
-      ENV["LIGHTSPARK_API_TOKEN_CLIENT_ID"]
+      Lightspark.configuration.client_id
     end
 
     def api_token
-      ENV["LIGHTSPARK_API_TOKEN_CLIENT_SECRET"]
+      Lightspark.configuration.client_secret
     end
 
     def api_base_uri

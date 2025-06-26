@@ -3,7 +3,7 @@
 require_relative "lib/lightspark/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "lightspark"
+  spec.name = "ls"
   spec.version = Lightspark::VERSION
   spec.authors = ["Kang-Kyu Lee"]
   spec.email = ["kangkyu1111@gmail.com"]
