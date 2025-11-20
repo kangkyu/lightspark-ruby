@@ -2,10 +2,12 @@ PATH
   remote: .
   specs:
     ls (0.1.0)
+      ls-grid (~> 0.1.0)
 
 GEM
   remote: https://rubygems.org/
   specs:
+    base64 (0.3.0)
     date (3.4.1)
     erb (5.0.1)
     io-console (0.8.0)
@@ -13,6 +15,8 @@ GEM
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
+    ls-grid (0.1.0)
+      base64 (~> 0.3.0)
     minitest (5.25.5)
     pp (0.6.2)
       prettyprint

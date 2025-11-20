@@ -6,6 +6,7 @@ require "json"
 require "time"
 
 require_relative "lightspark/config"
+require "ls/grid"
 
 module Lightspark
   class Error < StandardError; end
