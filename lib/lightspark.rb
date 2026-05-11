@@ -9,6 +9,13 @@ require_relative "lightspark/config"
 
 module Lightspark
   class Error < StandardError; end
+end
+
+require_relative "lightspark/crypto"
+require_relative "lightspark/signing_key"
+require_relative "lightspark/signing_key_loader"
+
+module Lightspark
 
   CURRENT_ACCOUNT_QUERY = <<-'GRAPHQL'
 query GetCurrentAccount {
@@ -43,6 +50,15 @@ fragment AccountFragment on Account {
 
     def initialize
       @uri = URI.parse(api_base_uri)
+      @node_keys = {}
+    end
+
+    def load_node_signing_key(node_id, loader)
+      @node_keys[node_id] = loader.load_signing_key(self)
+    end
+
+    def node_signing_key(node_id)
+      @node_keys[node_id]
     end
 
     def execute(query_string, operation_name: nil, variables: {}, context: {})
