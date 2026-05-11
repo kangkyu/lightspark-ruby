@@ -1,5 +1,8 @@
-PATH
-  remote: ../lightspark-crypto-uniffi/lightspark-crypto-ruby
+GIT
+  remote: https://github.com/kangkyu/lightspark-crypto-uniffi
+  revision: e23d616a233401ec72280c579d3ca39b707e94a1
+  branch: lightspark-crypto-ruby
+  glob: lightspark-crypto-ruby/*.gemspec
   specs:
     lightspark_crypto (0.1.0)
       rb_sys (~> 0.9)

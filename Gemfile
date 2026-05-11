@@ -10,4 +10,5 @@ gem "rake", "~> 13.0"
 
 gem "minitest", "~> 5.16"
 
-gem "lightspark_crypto", path: "../lightspark-crypto-uniffi/lightspark-crypto-ruby"
+gem "lightspark_crypto", git: "https://github.com/kangkyu/lightspark-crypto-uniffi",
+  branch: "lightspark-crypto-ruby", glob: "lightspark-crypto-ruby/*.gemspec"
