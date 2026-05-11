@@ -35,6 +35,7 @@ Gem::Specification.new do |spec|
 
   # Eventually (later)
   # spec.add_dependency "lightspark_crypto", "~> 0.1"
+  spec.add_dependency "base64"
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html
