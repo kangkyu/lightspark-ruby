@@ -2,10 +2,12 @@ PATH
   remote: .
   specs:
     ls (0.1.0)
+      base64
 
 GEM
   remote: https://rubygems.org/
   specs:
+    base64 (0.3.0)
     date (3.4.1)
     erb (5.0.1)
     io-console (0.8.0)
