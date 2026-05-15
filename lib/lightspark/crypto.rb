@@ -5,6 +5,9 @@ require "base64"
 require "json"
 
 module Lightspark
+  # Mirrors go-sdk/crypto/crypto.go DecryptPrivateKey: PBKDF2-HMAC-SHA256 derives
+  # a key (and IV for v<3 or v=4) from the password+salt, then AES-256-GCM or
+  # -CBC decrypts the payload depending on the header version.
   module Crypto
     KEY_LEN = 32
     GCM_TAG_LEN = 16
@@ -79,8 +82,8 @@ module Lightspark
       cipher.update(data) + cipher.final
     end
 
-    # Mirrors go-sdk/crypto/crypto.go decryptCbc: drops the first AES block of
-    # the ciphertext before decrypting, then strips PKCS7 padding manually.
+    # Mirrors go-sdk decryptCbc: uses the derived IV but drops the first AES
+    # block of ciphertext before decrypting, then strips PKCS7 padding.
     def decrypt_cbc(ciphertext, key, iv)
       cipher = OpenSSL::Cipher.new("aes-256-cbc")
       cipher.decrypt
@@ -92,11 +95,13 @@ module Lightspark
       pkcs7_unpad(decrypted)
     end
 
+    # Matches go-sdk's pkcs7Unpad: only rejects pad > len (a zero pad is
+    # silently a no-op, mirroring the Go behavior).
     def pkcs7_unpad(data)
       raise Error, "cannot unpad empty data" if data.empty?
 
-      pad = data.bytes.last
-      raise Error, "invalid padding length" if pad <= 0 || pad > data.bytesize
+      pad = data.getbyte(-1)
+      raise Error, "invalid padding length" if pad > data.bytesize
 
       tail = data.byteslice(data.bytesize - pad, pad)
       raise Error, "invalid padding" unless tail.bytes.all? { |b| b == pad }

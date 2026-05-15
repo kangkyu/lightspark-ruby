@@ -33,9 +33,8 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  # Eventually (later)
-  # spec.add_dependency "lightspark_crypto", "~> 0.1"
   spec.add_dependency "base64"
+  # lightspark_crypto is sourced from the Gemfile (git) until it's published.
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html
