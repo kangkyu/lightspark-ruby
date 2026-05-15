@@ -24,12 +24,9 @@ query RecoverNodeSigningKey(
     def initialize(node_id:, password:)
       @node_id = node_id
       @password = password
-      @cached_signing_key = nil
     end
 
     def load_signing_key(client)
-      return @cached_signing_key if @cached_signing_key
-
       response = client.execute(
         RECOVER_NODE_SIGNING_KEY_QUERY,
         operation_name: "RecoverNodeSigningKey",
@@ -51,7 +48,7 @@ query RecoverNodeSigningKey(
         encrypted["encrypted_value"],
         @password
       )
-      @cached_signing_key = RsaSigningKey.new(key_bytes)
+      RsaSigningKey.new(key_bytes)
     end
   end
 end
